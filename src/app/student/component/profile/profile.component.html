@@ -1,0 +1,60 @@
+<mat-card class="custom-card">
+    <mat-card-header>
+        <mat-card-title>Edit Profile</mat-card-title>
+        <!-- <mat-divider></mat-divider> -->
+    </mat-card-header>
+
+
+    <mat-card-content>
+        <mat-divider></mat-divider>
+        <br><br>
+
+        <form action="" [formGroup]="updateForm" (ngSubmit)="update()">
+
+            <mat-form-field appearance="outline" [style.width.%]=100>
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="Placeholder" formControlName="firstName" required>
+                <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" [style.width.%]=100>
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder=" Placeholder" formControlName="lastName" required>
+                <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" [style.width.%]=100>
+                <mat-label>Batch</mat-label>
+                <input matInput placeholder=" Placeholder" formControlName="Batch" required>
+                <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" [style.width.%]=100>
+                <mat-label>Roll Number</mat-label>
+                <input matInput placeholder=" Placeholder" formControlName="rollNo" required>
+                <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" [style.width.%]=100>
+                <mat-label>Email ID</mat-label>
+                <input matInput placeholder=" Placeholder" formControlName="emailId" required>
+                <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+
+
+            <mat-form-field appearance="outline" [style.width.%]=100>
+                <mat-label>Contact Number</mat-label>
+                <input matInput placeholder=" Placeholder" formControlName="contactNo" required>
+                <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+
+            <button type="submit" [disabled]="!updateForm.valid" color="primary" mat-raised-button>Update</button>
+        </form>
+    </mat-card-content>
+
+    <mat-card-actions>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,77 @@
+{
+    complaint: [
+        {
+            grevianceType: "canteen",
+            Subject: 'food quality',
+            Description: 'food quality is not good as expectation'
+        },
+        {
+            grevianceType: "canteen",
+            Subject: 'food quality',
+            Description: 'food quality is not good as expectation'
+        }
+    ]
+},
+
+{
+    _id: "602bb57924b1d069a6d3c634",
+    complaint: [
+        {
+            grevianceType: "canteen",
+            Subject: 'food quality',
+            Description: 'food quality is not good as expectation'
+        },
+        {
+            grevianceType: "canteen",
+            Subject: 'food quality',
+            Description: 'food quality is not good as expectation'
+        }
+    ]
+}
+
+db.complaints.find().forEach((docs) => {print (docs.complaint)})
+
+
+# status change query test
+{
+    "_id": ObjectId('602bb57924b1d069a6d3c634'),
+    "complaint._id": "PcAPxK7mT"
+},
+{
+    $set: {
+        "complaint.$.Status": "Closed"
+    }
+}
+
+db.complaints.update(
+    {
+    "_id": ObjectId('602bb57924b1d069a6d3c634'),
+    "complaint._id": "PcAPxK7mT"
+    },
+    {
+        $set: {
+            "complaint.$.Status": "Closed"
+        }
+    }
+)
+
+db.complaints.find({
+    "_id": ObjectId('602bb57924b1d069a6d3c634')
+})
+
+# Update query
+db.students.updateOne(
+    {
+        "_id" :  ObjectId('602bb57924b1d069a6d3c634')
+    },
+    {
+        $set: {
+            "firstName" : '',
+            "lastName" : '',
+            "Batch" : '',
+            "rollNo" : '',
+            "emailId" : '',
+            "contactNo" : ''
+        }
+    }
+)

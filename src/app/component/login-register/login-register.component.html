@@ -1,0 +1,195 @@
+<body>
+
+
+
+    <nav class="navbar navbar-expand-lg my-nav">
+        <!-- <a class="navbar-brand" href="#">Navbar</a>-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/home" routerLinkActive="active">Home <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/login_register" routerLinkActive="active">Register/Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="center-content">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <mat-card-title>Login/Register</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-tab-group>
+                    <!-- login tab -->
+                    <mat-tab label="Login">
+                        <form action="" method="POST" [formGroup]="loginForm" (ngSubmit)="login()">
+
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Email</mat-label>
+                                <input type="email" matInput placeholder="Email" value="" formControlName="emailId">
+                                <mat-icon matSuffix>email</mat-icon>
+                                <mat-error
+                                    *ngIf="loginForm.get('emailId').hasError('required') && loginForm.get('emailId').touched">
+                                    Email ID is required
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Password</mat-label>
+                                <input type="password" matInput placeholder="Password" formControlName="Password">
+                                <mat-icon matSuffix>vpn_key</mat-icon>
+                                <mat-error
+                                    *ngIf="loginForm.get('Password').hasError('required') && loginForm.get('Password').touched">
+                                    Password is required
+                                </mat-error>
+                            </mat-form-field>
+                            <button [disabled]="!loginForm.valid" mat-button color="primary"
+                                type="submit">Login</button>
+                        </form>
+                    </mat-tab>
+
+                    <!-- register tab -->
+                    <mat-tab label="Register">
+                        <form action="" method="POST" [formGroup]="registerForm" (ngSubmit)="addUser()">
+
+                            <mat-form-field class="" [ngStyle]="{'margin-top': '10px'}">
+                                <mat-label>First Name</mat-label>
+                                <input type="text" matInput placeholder="Name" value="" formControlName="firstName">
+                                <mat-error
+                                    *ngIf="registerForm.get('firstName').hasError('required') && registerForm.get('firstName').touched">
+                                    First name is required
+                                </mat-error>
+
+                            </mat-form-field>
+
+                            <mat-form-field class="" [ngStyle]="{'margin-top': '10px', 'margin-left': '55px'}">
+                                <mat-label>last Name</mat-label>
+                                <input type="text" matInput placeholder="Name" value="" formControlName="lastName">
+                                <mat-error
+                                    *ngIf="registerForm.get('lastName').hasError('required') && registerForm.get('lastName').touched">
+                                    Last name is required
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-radio-group formControlName="Gender" aria-label="Select an option">
+                                <label>Gender:</label><br>
+                                <mat-radio-button value="male">Male</mat-radio-button>
+                                <mat-radio-button value="female">Female</mat-radio-button>
+                            </mat-radio-group><br>
+
+                            <mat-form-field appearance="legacy" class="example-full-width">
+                                <mat-label>Select Department</mat-label>
+                                <mat-select formControlName="Department">
+                                    <mat-option *ngFor="let dept of department" [value]="dept">
+                                        {{dept}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error
+                                    *ngIf="registerForm.get('Department').hasError('required') && registerForm.get('Department').touched">
+                                    Department name is required
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Acedemic Year</mat-label>
+                                <input type="text" matInput placeholder="Acedemic year" value=""
+                                    formControlName="acedamicYear">
+                                <mat-error
+                                    *ngIf="registerForm.get('acedamicYear').hasError('required') && registerForm.get('acedamicYear').touched">
+                                    Acedamic Year is required
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="">
+                                <mat-label>Batch</mat-label>
+                                <input type="text" matInput placeholder="Batch" value="" formControlName="Batch">
+                                <mat-error
+                                    *ngIf="registerForm.get('Batch').hasError('required') && registerForm.get('Batch').touched">
+                                    Batch name is required
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field [style.marginLeft.px]=55>
+                                <mat-label>Roll No</mat-label>
+                                <input type="text" matInput placeholder="Roll No" value="" formControlName="rollNo">
+                                <mat-error
+                                    *ngIf="registerForm.get('rollNo').hasError('required') && registerForm.get('rollNo').touched">
+                                    Roll No is required
+                                </mat-error>
+                            </mat-form-field>
+
+
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Email</mat-label>
+                                <input type="email" matInput placeholder="Email" value="" formControlName="emailId">
+                                <mat-icon matSuffix>email</mat-icon>
+                                <mat-error
+                                    *ngIf="registerForm.get('emailId').hasError('required') && registerForm.get('emailId').touched">
+                                    Email ID is required
+                                    <span *ngIf="registerForm.get('confirmPassword').hasError('emailAlreadyExist')">
+                                        Password doesn't match
+                                    </span>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Contact No</mat-label>
+                                <input type="tel" matInput placeholder="Phone no" formControlName="contactNo">
+                                <mat-error
+                                    *ngIf="registerForm.get('contactNo').hasError('required') && registerForm.get('contactNo').touched">
+                                    Contact Number is required
+                                </mat-error>
+                            </mat-form-field>
+
+                            <!-- <mat-form-field class="example-full-width">
+                                <mat-label>ID Photo</mat-label>
+                                <input matInput readonly name="" />
+                                <input type="file" placeholder="Upload photo" (change)="onFileSelect($event)"
+                                    formControlName="ID_photo">
+                            </mat-form-field> -->
+
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Password</mat-label>
+                                <input type="password" [(ngModel)]="psswd" matInput placeholder="Password"
+                                    formControlName="Password">
+                                <mat-icon matSuffix>vpn_key</mat-icon>
+                                <mat-error
+                                    *ngIf="registerForm.get('Password').hasError('required') && registerForm.get('Password').touched">
+                                    Password is required
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Confirm Password</mat-label>
+                                <input type="password" [(ngModel)]="cpsswd" matInput placeholder="Confirm Password"
+                                    formControlName="confirmPassword">
+                                <mat-icon matSuffix>vpn_key</mat-icon>
+                                <mat-error>
+                                    <span
+                                        *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
+                                        Confirm Password is required
+                                    </span>
+                                    <span *ngIf="registerForm.get('confirmPassword').hasError('mismatch')">
+                                        Password doesn't match
+                                    </span>
+                                </mat-error>
+                            </mat-form-field>
+                            <button [disabled]="!registerForm.valid" mat-button color="primary">Register</button>
+                        </form>
+                    </mat-tab>
+                </mat-tab-group>
+
+            </mat-card-content>
+
+        </mat-card>
+    </div>
+</body>
